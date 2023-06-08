@@ -3,6 +3,7 @@ const sequelize = require('../config/connection');
 
 class Department extends Model {}
 
+// This is the Department table schema
 Department.init(
     {
         id: {

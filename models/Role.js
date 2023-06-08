@@ -3,6 +3,7 @@ const sequelize = require('../config/connection');
 
 class Role extends Model {}
 
+// This is the Role table schema
 Role.init(
     {
         id: {
