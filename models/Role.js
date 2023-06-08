@@ -1,9 +1,9 @@
 const { Model, DataTypes } = require('sequelize');
 const sequelize = require('../config/connection');
 
-class Department extends Model {}
+class Role extends Model {}
 
-Department.init(
+Role.init(
     {
         id: {
             type: DataTypes.INTEGER,
@@ -11,8 +11,16 @@ Department.init(
             autoIncrement: true,
             allowNull: false
         },
-        name: {
+        title: {
             type: DataTypes.VARCHAR(30),
+            allowNull: false
+        },
+        salary: {
+            type: DataTypes.DECIMAL,
+            allowNull: false
+        },
+        department_id: {
+            type: DataTypes.INTEGER,
             allowNull: false
         }
     },
@@ -21,7 +29,6 @@ Department.init(
         timestamps: false,
         freezeTableName: true,
         underscored: true,
-        modelName: 'department'
+        modelName: 'role'
     }
 );
-
