@@ -39,3 +39,5 @@ Employee.init(
         modelName: 'employee'
     }
 )
+
+module.exports = Employee;
