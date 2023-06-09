@@ -42,9 +42,9 @@ const viewDepts = () => {
         'SELECT * FROM Department',
         function(err, results) {
             console.table(results);
+            questionUser();
         }
     );
-    questionUser();
 }
 
 const viewRoles = () => {
@@ -52,9 +52,9 @@ const viewRoles = () => {
         'SELECT * FROM Role',
         function(err, results) {
             console.table(results);
+            questionUser();
         }
     );
-    questionUser();
 }
 
 const viewEmployees = () => {
@@ -62,9 +62,9 @@ const viewEmployees = () => {
         'SELECT * FROM Employee',
         function(err, results) {
             console.table(results);
+            questionUser();
         }
     );
-    questionUser();
 }
 
 const addDept = () => {
@@ -86,9 +86,9 @@ const addDept = () => {
                     } else {
                         console.log('Successfully added department');
                     }
+                    questionUser();
                 }
             );
-            questionUser();
         })
 }
 
@@ -123,9 +123,9 @@ const addRole = () => {
                     } else {
                         console.log('Successfully added role');
                     }
+                    questionUser();
                 }
             );
-            questionUser();
         })
 }
 
@@ -156,7 +156,7 @@ const addEmployee = () => {
             const firstName = res.firstName;
             const lastName = res.lastName;
             const roleID = res.roleID;
-            const managerID = res.managerID;
+            let managerID = res.managerID;
             // The employee will have no manager if the input is -1
             if (managerID === -1) {
                 managerID = null;
@@ -164,16 +164,16 @@ const addEmployee = () => {
 
             connection.query(
                 `INSERT INTO Employee (first_name, last_name, role_id, manager_id)
-                VALUES (${firstName}, ${lastName}, ${roleID}, ${managerID});`,
+                VALUES ('${firstName}', '${lastName}', ${roleID}, ${managerID});`,
                 function(err, results) {
                     if (err) {
                         console.log(err);
                     } else {
                         console.log('Successfully added employee');
                     }
+                    questionUser();
                 }
             );
-            questionUser();
         })
 }
 
@@ -203,9 +203,9 @@ const updateEmployeeRole = () => {
                     } else {
                         console.log('Successfully updated employee role');
                     }
+                    questionUser();
                 }
             );
-            questionUser();
         })
 }
 
