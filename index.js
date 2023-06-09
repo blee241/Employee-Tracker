@@ -22,7 +22,7 @@ const questionUser = () => {
                     viewEmployees();
                     break;
                 case 'Add a department':
-                    console.log('4');
+                    addDept();
                     break;
                 case 'Add a role':
                     console.log('5');
@@ -34,7 +34,6 @@ const questionUser = () => {
                     console.log('7');
                     break;
             }
-            questionUser();
         });
 };
 
@@ -42,27 +41,55 @@ const viewDepts = () => {
     connection.query(
         'SELECT * FROM Department',
         function(err, results) {
-            console.log(results);
+            console.table(results);
         }
-    )
+    );
+    questionUser();
 }
 
 const viewRoles = () => {
     connection.query(
         'SELECT * FROM Role',
         function(err, results) {
-            console.log(results);
+            console.table(results);
         }
-    )
+    );
+    questionUser();
 }
 
 const viewEmployees = () => {
     connection.query(
         'SELECT * FROM Employee',
         function(err, results) {
-            console.log(results);
+            console.table(results);
         }
-    )
+    );
+    questionUser();
+}
+
+const addDept = () => {
+    inquirer
+        .prompt([
+            {
+                type: 'input',
+                message: 'Enter new department name',
+                name: 'deptName',
+            }
+        ]).then( res => {
+            const deptName = res.deptName;
+            connection.query(
+                `INSERT INTO Department (name)
+                VALUES  ('${deptName}')`,
+                function(err, results) {
+                    if (err) {
+                        console.log(err);
+                    } else {
+                        console.log('Successfully added department');
+                    }
+                }
+            );
+            questionUser();
+        })
 }
 
 questionUser();
