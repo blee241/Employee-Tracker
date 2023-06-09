@@ -25,7 +25,7 @@ const questionUser = () => {
                     addDept();
                     break;
                 case 'Add a role':
-                    console.log('5');
+                    addRole();
                     break;
                 case 'Add an employee':
                     console.log('6');
@@ -79,12 +79,49 @@ const addDept = () => {
             const deptName = res.deptName;
             connection.query(
                 `INSERT INTO Department (name)
-                VALUES  ('${deptName}')`,
+                VALUES  ('${deptName}');`,
                 function(err, results) {
                     if (err) {
                         console.log(err);
                     } else {
                         console.log('Successfully added department');
+                    }
+                }
+            );
+            questionUser();
+        })
+}
+
+const addRole = () => {
+    inquirer
+        .prompt([
+            {
+                type: 'input',
+                message: 'Enter new role title',
+                name: 'roleTitle',
+            },
+            {
+                type: 'number',
+                message: 'Enter new role salary',
+                name: 'roleSalary',
+            },
+            {
+                type: 'number',
+                message: 'Enter the department id of the department that the new role will belong to',
+                name: 'deptID',
+            }
+        ]).then( res => {
+            const roleTitle = res.roleTitle;
+            const roleSalary = res.roleSalary;
+            const deptID = res.deptID;
+            connection.query(
+                `INSERT INTO Role (title, salary, department_id)
+                VALUES  ('${roleTitle}', ${roleSalary}, ${deptID});`,
+                function(err, results) {
+                    if (err) {
+                        console.log(err);
+                    } else {
+                        console.log('Successfully added role');
                     }
                 }
             );
