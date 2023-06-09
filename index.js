@@ -129,4 +129,52 @@ const addRole = () => {
         })
 }
 
+const addEmployee = () => {
+    inquirer
+        .prompt([
+            {
+                type: 'input',
+                message: 'Enter new employee first name',
+                name: 'firstName',
+            },
+            {
+                type: 'input',
+                message: 'Enter new employee last name',
+                name: 'lastName',
+            },
+            {
+                type: 'number',
+                message: 'Enter the role id for the new employee',
+                name: 'roleID',
+            },
+            {
+                type: 'number',
+                message: 'Enter the manager id for the new employee. If the new employee has no manager, then input -1',
+                name: 'managerID',
+            }
+        ]).then( res => {
+            const firstName = res.firstName;
+            const lastName = res.lastName;
+            const roleID = res.roleID;
+            const managerID = res.managerID;
+            // The employee will have no manager if the input is -1
+            if (managerID === -1) {
+                managerID = null;
+            }
+
+            connection.query(
+                `INSERT INTO Employee (first_name, last_name, role_id, manager_id)
+                VALUES (${firstName}, ${lastName}, ${roleID}, ${managerID});`,
+                function(err, results) {
+                    if (err) {
+                        console.log(err);
+                    } else {
+                        console.log('Successfully added employee');
+                    }
+                }
+            );
+            questionUser();
+        })
+}
+
 questionUser();
