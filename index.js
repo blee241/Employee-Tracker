@@ -28,10 +28,10 @@ const questionUser = () => {
                     addRole();
                     break;
                 case 'Add an employee':
-                    console.log('6');
+                    addEmployee();
                     break;
                 case 'Update an employee role':
-                    console.log('7');
+                    updateEmployeeRole();
                     break;
             }
         });
@@ -170,6 +170,38 @@ const addEmployee = () => {
                         console.log(err);
                     } else {
                         console.log('Successfully added employee');
+                    }
+                }
+            );
+            questionUser();
+        })
+}
+
+const updateEmployeeRole = () => {
+    inquirer
+        .prompt([
+            {
+                type: 'number',
+                message: 'Enter the employee id whose role you want to change',
+                name: 'employeeID',
+            },
+            {
+                type: 'number',
+                message: 'Enter the new role id',
+                name: 'roleID'
+            }
+        ]).then( res => {
+            const employeeID = res.employeeID;
+            const roleID = res.roleID;
+            connection.query(
+                `UPDATE Employee
+                SET role_id = ${roleID}
+                WHERE id = ${employeeID};`,
+                function(err, results) {
+                    if (err) {
+                        console.log(err);
+                    } else {
+                        console.log('Successfully updated employee role');
                     }
                 }
             );
