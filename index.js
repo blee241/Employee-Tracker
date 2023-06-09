@@ -1,4 +1,5 @@
 const inquirer = require('inquirer');
+const connection = require('./config/connection');
 
 const questionUser = () => {
     inquirer
@@ -12,7 +13,7 @@ const questionUser = () => {
         ]).then( res => {
             switch (res.action) {
                 case 'View all departments':
-                    console.log('1');
+                    viewDepts();
                     break;
                 case 'View all roles':
                     console.log('2');
@@ -33,7 +34,18 @@ const questionUser = () => {
                     console.log('7');
                     break;
             }
-        })
+            questionUser();
+        });
+};
+
+const viewDepts = () => {
+    connection.query(
+        'SELECT * FROM Department',
+        function(err, results) {
+            console.log(results);
+        }
+    )
 }
+
 
 questionUser();
