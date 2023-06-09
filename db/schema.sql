@@ -28,3 +28,28 @@ CREATE TABLE Employee (
     PRIMARY KEY (id),
     FOREIGN KEY (manager_id) REFERENCES Employee(id)
 );
+
+-- Seed data
+INSERT INTO Department (name)
+VALUES  ('Finance'),
+        ('Technology'),
+        ('Floor');
+
+INSERT INTO Role (title, salary, department_id)
+VALUES  ('Chief Financial Officer', 428169.00, 1),
+        ('Financial Analyst', 95570.00, 1),
+        ('Financial Advisor', 94170.00, 1),
+        ('Accountant', 77250.00, 1);
+
+INSERT INTO Employee (first_name, last_name, role_id, manager_id)
+VALUES  ('Callie', 'Bridges', 1, null),
+        ('Bella', 'Faulkner', 2, 1),
+        ('Anne', 'Montgomery', 3, 1),
+        ('Bruce', 'Rios', 4, 2),
+        ('Steven', 'Jacobs', 4, 2),
+        ('Jonathan', 'McClain', 4, 2);
+
+
+SELECT * FROM Department;
+SELECT * FROM Role;
+SELECT * FROM Employee;
