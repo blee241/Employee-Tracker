@@ -20,6 +20,8 @@
 
   ## Usage
 
+[Desktop Recording - June 9, 2023 12_30 AM.webm](https://github.com/blee241/Employee-Tracker/assets/128437170/88fc3275-4eda-4de2-82d9-452e6362dc10)
+
   After following installation instructions, type $node index.js at the root level of the project to start the application. The application will ask a series of prompts to interact with the database.
 
   ## License
