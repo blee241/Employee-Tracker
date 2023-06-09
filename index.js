@@ -19,7 +19,7 @@ const questionUser = () => {
                     viewRoles();
                     break;
                 case 'View all employees':
-                    console.log('3');
+                    viewEmployees();
                     break;
                 case 'Add a department':
                     console.log('4');
@@ -56,6 +56,13 @@ const viewRoles = () => {
     )
 }
 
-
+const viewEmployees = () => {
+    connection.query(
+        'SELECT * FROM Employee',
+        function(err, results) {
+            console.log(results);
+        }
+    )
+}
 
 questionUser();
