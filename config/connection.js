@@ -8,8 +8,4 @@ const connection = mysql.createConnection({
     database: process.env.DB_NAME,
 });
 
-connection.query('SELECT * FROM Department', function (err, results) {
-    console.log(results);
-})
-
 module.exports = connection;
