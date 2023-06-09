@@ -3,6 +3,7 @@ CREATE DATABASE employee_tracker_db;
 
 USE employee_tracker_db;
 
+-- Table schemas
 CREATE TABLE Department (
     id INT NOT NULL AUTO_INCREMENT,
     name VARCHAR(30) NOT NULL,
